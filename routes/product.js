@@ -44,7 +44,17 @@ router.get('/allproduct', async (req, res)=>{
     }
 })
 
-
+router.put('/updateprod/:id', async (req,res)=>{
+    try {
+        myid = req.params.id;
+        newData = req.body;
+        updatedProd = await Product.findByIdAndUpdate({_id: myid}, newData , { new: true });
+        res.status(200).send(updatedProd);
+        
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
 
 
 
