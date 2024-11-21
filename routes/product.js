@@ -56,6 +56,17 @@ router.put('/updateprod/:id', async (req,res)=>{
     }
 })
 
+router.delete('/delprod/:id', async (req,res)=>{
+    try {
+        myid = req.params.id;
+        deletedProd = await Product.findByIdAndDelete({_id: myid})
+        res.status(200).send(deletedProd)
+        
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 
 
 module.exports = router;
